@@ -1,0 +1,76 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #CAD7B2;
+    font-family: 'Quicksand', sans-serif;
+}
+
+.banner {
+    margin: 30px auto;
+    text-align: center;
+    padding: 50px;
+}
+
+.banner img {
+    width: 150px;
+}
+
+h1 {
+    font-size: 2em;
+    color: #0D6759;
+    letter-spacing: 2px;
+}
+
+.subtitle {
+    font-style: italic;
+}
+
+.auth_nav {
+    padding-left: 0;
+    padding-top: 30px;
+}
+
+.auth_nav li {
+    list-style-type: none;
+    background-color: #0D6759;
+    padding: 15px;
+    margin-bottom: 15px;
+    -webkit-transition: all 0.5s ease;
+    -mox-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+.auth_nav li:hover {
+    background-color: #7AB317;
+    -webkit-transition: all 0.5s ease;
+    -mox-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+.auth_nav a {
+    color: white;
+    text-decoration: none;
+}
+
+@media only screen and (min-width: 640px) {
+    .banner img {
+        width: 300px;
+        float: right;
+    }
+
+    .banner {
+        margin: 100px auto;
+        width: 600px;
+    }
+
+    h1 {
+        font-size: 2.5em;
+    }
+
+    .auth_nav li {
+        display: inline;
+        margin-right: 10px;
+    }
+}

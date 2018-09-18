@@ -1,0 +1,17 @@
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'dobox/style.css' %}" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<body>
+    <div class="banner">
+        <img src="{% static 'dobox/images/money.png' %}" alt="money">
+        <h1>Dobox</h1>
+        <span class="subtitle">Budget tracking made easy.</span>
+        <ul class="auth_nav">
+            <a href="{% url 'dobox:signup' %}"><li>Signup</li></a>
+            <a href="{% url 'dobox:signin' %}"><li>Signin</li></a>
+        </ul>
+    </div>
+</body>
