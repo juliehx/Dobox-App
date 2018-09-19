@@ -1,76 +1,67 @@
 body {
+    background-color: #ececec;
+    font-family: 'Quicksand', sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #CAD7B2;
-    font-family: 'Quicksand', sans-serif;
+    color: #555;
 }
 
-.banner {
-    margin: 30px auto;
+a {
+    color: #637D56;
+}
+
+.auth_form {
+    font-size: 13px;
+    padding: 30px;
     text-align: center;
-    padding: 50px;
 }
 
-.banner img {
-    width: 150px;
+.auth_form img {
+    width: 120px;
+    background-image: #fff;
 }
 
-h1 {
-    font-size: 2em;
-    color: #0D6759;
-    letter-spacing: 2px;
+input[type='text'], input[type='password'], input[type='submit'] {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    background-color: #CACCB6;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 14px;
+    letter-spacing: 1px;
+    color: #45563d;
+    border: 2px solid #CACCB6;
+    border-radius: 5px;
 }
 
-.subtitle {
-    font-style: italic;
+input[type='text']:focus, input[type='password']:focus {
+    border: 2px solid #45563d;
+    outline: none;
 }
 
-.auth_nav {
-    padding-left: 0;
-    padding-top: 30px;
-}
-
-.auth_nav li {
-    list-style-type: none;
-    background-color: #0D6759;
-    padding: 15px;
-    margin-bottom: 15px;
-    -webkit-transition: all 0.5s ease;
-    -mox-transition: all 0.5s ease;
-    -o-transition: all 0.5s ease;
-    transition: all 0.5s ease;
-}
-
-.auth_nav li:hover {
-    background-color: #7AB317;
-    -webkit-transition: all 0.5s ease;
-    -mox-transition: all 0.5s ease;
-    -o-transition: all 0.5s ease;
-    transition: all 0.5s ease;
-}
-
-.auth_nav a {
+input[type='submit'] {
+    background-color: #637D56;
+    padding: 12px;
     color: white;
-    text-decoration: none;
+    border: none;
+    text-transform: uppercase;
 }
 
-@media only screen and (min-width: 640px) {
-    .banner img {
+@media only screen and (min-width:640px) {
+    body {
+        background-color: #fff; /*83986B;*/
+    }
+
+    .auth_form {
+        background-color: #ececec;
         width: 300px;
-        float: right;
+        padding: 30px;
+        margin: 50px auto;
+        border-radius: 20px;
+        box-shadow: 10px 10px 10px #bbb; /*66795d;*/
     }
 
-    .banner {
-        margin: 100px auto;
-        width: 600px;
-    }
-
-    h1 {
-        font-size: 2.5em;
-    }
-
-    .auth_nav li {
-        display: inline;
-        margin-right: 10px;
+    .auth_form img {
+        width: 150px;
     }
 }
