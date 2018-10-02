@@ -15,7 +15,7 @@ def signin(request):
             if user is not None:
                 print(user)
                 login(request, user)
-                return redirect('dobox:success')
+                return redirect('dobox:dashboard')
             else:
                 print('user not found')
     else:
@@ -27,10 +27,10 @@ def signup(request):
         form = forms.RegistrationForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('dobox:success')
+            return redirect('dobox:dashboard')
     else:
         form = forms.RegistrationForm()
     return render(request, 'dobox/signup.html', {'form': form})
 
-def success(request):
-    return render(request, 'dobox/success.html')
+def dash(request):
+    return render(request, 'dobox/dashboard.html')

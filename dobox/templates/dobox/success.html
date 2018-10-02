@@ -1,5 +1,0 @@
-{% if user.is_authenticated %}
-    <p>Welcome, {{ user.username }}.</p>
-{% else %}
-    <p>Welcome to dobox! <a href="{% url 'dobox:signin' %}">Please login.</a></p>
-{% endif %}
