@@ -4,14 +4,15 @@
     <ul>
         {% for t in user.transaction_set.all %}
         <li>
-            {% if t.amount > 0 %}
-            {{ t.transaction }} | +{{ t.amount }}
-            {% else %}
             {{ t.transaction }} | {{ t.amount }}
-            {% endif %}
         </li>
         {% endfor %}
     </ul>
+    <form method="post" class="trans-form" name="trans-form">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" class="trans-submit" value="Add transaction">
+    </form>
 {% else %}
     <p>Welcome to dobox! <a href="{% url 'dobox:signin' %}">Please login.</a></p>
 {% endif %}

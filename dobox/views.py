@@ -33,4 +33,11 @@ def signup(request):
     return render(request, 'dobox/signup.html', {'form': form})
 
 def dash(request):
-    return render(request, 'dobox/dashboard.html')
+    if request.method == 'POST':
+        form = forms.AddTransForm(request.POST)
+        if form.is_valid():
+            request.user.transaction_set.create(transaction=form.cleaned_data['transaction_name'], amount=form.cleaned_data['amount'])
+            return redirect('dobox:signin')
+    else:
+        form = forms.AddTransForm()
+    return render(request, 'dobox/dashboard.html', {'form': form})

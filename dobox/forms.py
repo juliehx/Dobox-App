@@ -35,3 +35,7 @@ class RegistrationForm(UserCreationForm):
 class LoginForm(AuthenticationForm):
     username = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Username'}))
     password = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder': 'Password'}))
+
+class AddTransForm(forms.Form):
+    transaction_name = forms.CharField(max_length=100, widget=forms.TextInput(attrs={'placeholder': 'Sandwich'}))
+    amount = forms.FloatField(widget=forms.NumberInput(attrs={'placeholder':'14.00'}))
