@@ -1,18 +1,32 @@
+{% load static %}
+
 {% if user.is_authenticated %}
     <p>Welcome, {{ user.username }}.</p>
     <h1>Transactions</h1>
-    <ul>
+    <ul class="transactions">
         {% for t in user.transaction_set.all %}
         <li>
-            {{ t.transaction }} | {{ t.amount }}
+            {% if t.type == "spendings" %}
+                {{ t.transaction }} | <span class="spent">-${{ t.amount }}</span>
+            {% else %}
+                {{ t.transaction }} | <span class="earned">+${{ t.amount }}</span>
+            {% endif %}
         </li>
         {% endfor %}
     </ul>
     <form method="post" class="trans-form" name="trans-form">
         {% csrf_token %}
         {{ form.as_p }}
+        <select name="trans-type" id="trans-type" required>
+            <option value="">Select type</option>
+            <option value="spendings">Spent</option>
+            <option value="earnings">Earned</option>
+        </select>
         <input type="submit" class="trans-submit" value="Add transaction">
     </form>
 {% else %}
     <p>Welcome to dobox! <a href="{% url 'dobox:signin' %}">Please login.</a></p>
 {% endif %}
+
+<script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+<script src="{% static 'dobox/app.js' %}"></script>

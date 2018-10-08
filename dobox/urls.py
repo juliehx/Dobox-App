@@ -6,5 +6,6 @@ urlpatterns = [
     path('', views.index, name='index'),
     path('signin/', views.signin, name='signin'),
     path('signup/', views.signup, name='signup'),
-    path('dashboard/', views.dash, name='dashboard')
+    path('dashboard/', views.dash, name='dashboard'),
+    path('ajax/add_transaction/', views.add_transaction, name='add_transaction'),
 ]

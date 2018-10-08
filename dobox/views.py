@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
+from django.http import JsonResponse
 from . import forms
 
 def index(request):
@@ -33,11 +34,13 @@ def signup(request):
     return render(request, 'dobox/signup.html', {'form': form})
 
 def dash(request):
-    if request.method == 'POST':
-        form = forms.AddTransForm(request.POST)
-        if form.is_valid():
-            request.user.transaction_set.create(transaction=form.cleaned_data['transaction_name'], amount=form.cleaned_data['amount'])
-            return redirect('dobox:signin')
-    else:
-        form = forms.AddTransForm()
+    form = forms.AddTransForm()
     return render(request, 'dobox/dashboard.html', {'form': form})
+
+def add_transaction(request):
+    name = request.GET.get('transaction_name', '')
+    cost = request.GET.get('amount', '')
+    type = request.GET.get('type', '')
+    data = {'transaction': name, 'amount': cost, 'type': type}
+    request.user.transaction_set.create(transaction=name, amount=cost, type=type)
+    return JsonResponse(data)
