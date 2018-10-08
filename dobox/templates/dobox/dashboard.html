@@ -2,6 +2,13 @@
 
 {% if user.is_authenticated %}
     <p>Welcome, {{ user.username }}.</p>
+    <h1>Budget</h1>
+    <div class="budget"><li>${{ user.budget_info.budget }}</li></div>
+    <form method="post" class="budget-form" name="budget-form">
+        {% csrf_token %}
+        {{ budgetForm }}
+        <input type="submit" class="budget-submit" value="Create Budget">
+    </form>
     <h1>Transactions</h1>
     <ul class="transactions">
         {% for t in user.transaction_set.all %}

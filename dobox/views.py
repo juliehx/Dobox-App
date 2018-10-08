@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from django.http import JsonResponse
 from . import forms
+from .models import BudgetInfo
 
 def index(request):
     return render(request, 'dobox/index.html')
@@ -35,7 +36,8 @@ def signup(request):
 
 def dash(request):
     form = forms.AddTransForm()
-    return render(request, 'dobox/dashboard.html', {'form': form})
+    budgetForm = forms.BudgetForm()
+    return render(request, 'dobox/dashboard.html', {'form': form, 'budgetForm': budgetForm})
 
 def add_transaction(request):
     name = request.GET.get('transaction_name', '')
@@ -44,3 +46,14 @@ def add_transaction(request):
     data = {'transaction': name, 'amount': cost, 'type': type}
     request.user.transaction_set.create(transaction=name, amount=cost, type=type)
     return JsonResponse(data)
+
+def create_budget(request):
+    budget_amt = request.GET.get('budget', '')
+    try:
+        b = BudgetInfo.objects.get(user=request.user)
+        b.budget = budget_amt
+        b.save()
+    except:
+        b = BudgetInfo(user=request.user, budget=budget_amt)
+        b.save()
+    return JsonResponse({'budget': budget_amt})

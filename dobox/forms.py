@@ -39,3 +39,6 @@ class LoginForm(AuthenticationForm):
 class AddTransForm(forms.Form):
     transaction_name = forms.CharField(max_length=100, widget=forms.TextInput(attrs={'placeholder': 'Sandwich'}))
     amount = forms.FloatField(widget=forms.NumberInput(attrs={'placeholder':'14.00'}))
+
+class BudgetForm(forms.Form):
+    budget = forms.FloatField(widget=forms.NumberInput(attrs={'placeholder': '100.00'}))
