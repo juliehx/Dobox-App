@@ -1,39 +1,76 @@
 {% load static %}
 
+<link rel="stylesheet" href="{% static 'dobox/style.css' %}" type="text/css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
 {% if user.is_authenticated %}
-    <p>Welcome, {{ user.username }}.</p>
-    <h1>Budget</h1>
-    <div class="budget"><li>${{ user.budget_info.budget }}</li></div>
-    <form method="post" class="budget-form" name="budget-form">
-        {% csrf_token %}
-        {{ budgetForm }}
-        <input type="submit" class="budget-submit" value="Create Budget">
-    </form>
-    <h1>Transactions</h1>
-    <ul class="transactions">
-        {% for t in user.transaction_set.all %}
-        <li>
-            {% if t.type == "spendings" %}
-                {{ t.transaction }} | <span class="spent">-${{ t.amount }}</span>
-            {% else %}
-                {{ t.transaction }} | <span class="earned">+${{ t.amount }}</span>
-            {% endif %}
-        </li>
-        {% endfor %}
-    </ul>
-    <form method="post" class="trans-form" name="trans-form">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <select name="trans-type" id="trans-type" required>
-            <option value="">Select type</option>
-            <option value="spendings">Spent</option>
-            <option value="earnings">Earned</option>
-        </select>
-        <input type="submit" class="trans-submit" value="Add transaction">
-    </form>
+    <div class="container-fliud header">
+        <div class="row">
+            <div class="col">
+                <nav class="navbar">
+                    <a href="#" class="navbar-brand">
+                        <img src="{% static 'dobox/images/money_plant.png' %}" alt="money_plant"> Dobox
+                    </a>
+                    <ul class="navbar-nav">
+                        <li><a href="#" class="nav-link">Logout</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="user-general">
+                    <div class="card">
+                        <p>Welcome, {{ user.username }}.</p>
+                    </div>
+                    <div class="card">
+                        <h1>Budget</h1>
+                        <div class="budget"><p>${{ user.budget_info.budget }}</p></div>
+                        <form method="post" class="budget-form" name="budget-form">
+                            {% csrf_token %}
+                            {{ budgetForm }}
+                            <input type="submit" class="budget-submit" value="Create Budget">
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <h1>Transactions</h1>
+                <ul class="transactions">
+                    {% for t in user.transaction_set.all %}
+                        <li>
+                            {% if t.type == "spendings" %}
+                                {{ t.transaction }} | <span class="spent">-${{ t.amount }}</span>
+                            {% else %}
+                                {{ t.transaction }} | <span class="earned">+${{ t.amount }}</span>
+                            {% endif %}
+                        </li>
+                    {% endfor %}
+                </ul>
+                <form method="post" class="trans-form" name="trans-form">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <select name="trans-type" id="trans-type" required>
+                        <option value="">Select type</option>
+                        <option value="spendings">Spent</option>
+                        <option value="earnings">Earned</option>
+                    </select>
+                    <input type="submit" class="trans-submit" value="Add transaction">
+                </form>
+            </div>
+        </div>
+    </div>
+
+
 {% else %}
     <p>Welcome to dobox! <a href="{% url 'dobox:signin' %}">Please login.</a></p>
 {% endif %}
 
+<script>
+    var userBudget = {{ user.budget_info.budget }};
+</script>
 <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
 <script src="{% static 'dobox/app.js' %}"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>

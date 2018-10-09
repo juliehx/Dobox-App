@@ -1,3 +1,19 @@
+function create_budget(budget) {
+    const settings = {
+        type: 'GET',
+        url: "/dobox/ajax/create_budget/",
+        data: {
+            'budget': budget
+        },
+        datatype: 'json',
+        success: function(data) {
+            console.log(data);
+            $(".budget").html("<p>$" + data["budget"]+"</p>");
+        }
+    };
+    $.ajax(settings);
+};
+
 function get_transaction(name, cost, type) {
     const settings = {
         type: 'GET',
@@ -13,28 +29,13 @@ function get_transaction(name, cost, type) {
             data_display = "<li>" + data["transaction"] + " | ";
             if (data["type"] === "spendings") {
                 data_display += "-$" + data["amount"] + "</li>";
+                create_budget(userBudget - parseFloat(data["amount"]));
             }
             else {
                 data_display += "+$" + data["amount"] + "</li>";
+                create_budget(userBudget + parseFloat(data["amount"]));
             }
             $(".transactions").append(data_display);
-        }
-    };
-    $.ajax(settings);
-};
-
-function create_budget(budget) {
-    const settings = {
-        type: 'GET',
-        url: "/dobox/ajax/create_budget/",
-        data: {
-            'budget': budget
-        },
-        datatype: 'json',
-        success: function(data) {
-            console.log(data);
-            data_display = "<li>$" + data["budget"] + "</li>";
-            $(".budget").html(data_display);
         }
     };
     $.ajax(settings);

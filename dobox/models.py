@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 
 class BudgetInfo(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True, related_name="budget_info")
-    budget = models.FloatField(default=0.00)
+    budget = models.FloatField(default=100.00)
 
     def __str__(self):
         return "Budget: " + str(self.budget)
