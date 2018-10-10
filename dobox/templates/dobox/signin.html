@@ -13,4 +13,5 @@
     <p>{{ form.password }}</p>
     {{ form.password.errors }}
     <input type="submit" value="Sign in">
+    <p><a href="{% url 'dobox:signup' %}">Don't have an account? Sign up.</a></p>
 </form>

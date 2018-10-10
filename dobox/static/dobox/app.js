@@ -21,7 +21,7 @@ function get_transaction(name, cost, type) {
         data: {
             'transaction_name': name,
             'amount': cost,
-            'type': type
+            'type': type,
         },
         datatype: 'json',
         success: function(data) {
@@ -29,11 +29,11 @@ function get_transaction(name, cost, type) {
             data_display = "<li>" + data["transaction"] + " | ";
             if (data["type"] === "spendings") {
                 data_display += "-$" + data["amount"] + "</li>";
-                create_budget(userBudget - parseFloat(data["amount"]));
+                //create_budget(data["userBudget"] - parseFloat(data["amount"]));
             }
             else {
                 data_display += "+$" + data["amount"] + "</li>";
-                create_budget(userBudget + parseFloat(data["amount"]));
+                //create_budget(data["userBudget"] + parseFloat(data["amount"]));
             }
             $(".transactions").append(data_display);
         }
