@@ -8,7 +8,7 @@ function create_budget(budget) {
         datatype: 'json',
         success: function(data) {
             console.log(data);
-            $(".budget").html("<p>$" + data["budget"]+"</p>");
+            $(".budget").html("<h4><span class="budget-num">$" + data["budget"]+"</span></h4>");
         }
     };
     $.ajax(settings);
